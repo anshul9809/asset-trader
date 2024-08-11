@@ -23,7 +23,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "test:assets": "jest tests/assets.test.js"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
