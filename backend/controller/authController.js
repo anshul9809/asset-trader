@@ -63,7 +63,20 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     });
 });
 
+const getUser = expressAsyncHandler(async (req,res)=>{
+    const {_id} = req.user._id;
+    const user = await User.findById(_id).populate("assetsCreated").populate("assetsOwned");
+    if(!user){
+        res.status(404);
+        throw new Error("User not found");
+    }
+
+});
+
+
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUser
 };

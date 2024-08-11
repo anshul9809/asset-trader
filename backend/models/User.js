@@ -24,7 +24,19 @@ const UserSchema = new mongoose.Schema({
     isAdmin:{
         type:Boolean,
         default:false
-    }
+    },
+    assetsOwned:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Assets"
+        }
+    ],
+    assetsCreated:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Assets"
+        }
+    ]
 
 },
 {
