@@ -25,7 +25,7 @@
     "start": "node server.js",
     "test:auth": "jest tests/auth.test.js",
     "test:assets": "jest tests/assets.test.js",
-    "test:requests":"jest tests/requests.test.js"
+    "test:requests": "jest tests/requests.test.js"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
