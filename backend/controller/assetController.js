@@ -3,12 +3,6 @@ const User = require("../models/User");
 const Assets = require("../models/Assets")
 const {validateMongoDbId} = require("../utils/validateMongoDbId");
 
-const calculateAverageTradingPrices = (asset)=>{
-    const prices = asset.tradingJourney.price.map((price)=>price.price);
-    const averagePrice = prices.reduce((a, b) => a + b, 0) / prices.length;
-    return averagePrice;
-}
-
 const createAssetsDraft = expressAsyncHandler(async (req,res)=>{
     const {name, description, status} = req.body;
     let image;

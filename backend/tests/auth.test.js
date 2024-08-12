@@ -1,10 +1,9 @@
 const request = require('supertest');
-const app = require('../app'); // Adjust the path to your Express app
+const app = require('../app');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 
 // MongoDB connection URI for testing
-const mongoURI = process.env.MONGO_URL || 'mongodb://localhost:27017/your_test_db';
 
 describe('Auth API', () => {
   let userId;
@@ -14,11 +13,6 @@ describe('Auth API', () => {
     password: 'testpassword'
   };
 
-  // Connect to the database before running tests
-  beforeAll(async () => {
-    await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-  });
-
   // Clean up database before each test
   beforeEach(async () => {
     await User.deleteMany({});
@@ -26,6 +20,7 @@ describe('Auth API', () => {
 
   // Disconnect from the database after all tests
   afterAll(async () => {
+    User.deleteMany({});
     await mongoose.disconnect();
   });
 
@@ -37,7 +32,6 @@ describe('Auth API', () => {
         .send(userPayload)
         .expect('Content-Type', /json/)
         .expect(201);
-
       expect(response.body).toHaveProperty('message', 'User created successfully');
       expect(response.body).toHaveProperty('user');
       expect(response.body).toHaveProperty('token');

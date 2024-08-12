@@ -8,8 +8,10 @@ const {
     listAsset,
     getAsset
 } = require("../controller/assetController");
+const {createRequest} = require("../controller/requestController");
 
 router.put("/:id/publish", authMiddleware, listAsset);
+router.post("/:id/request", authMiddleware, createRequest);
 router.post("/", authMiddleware, upload.single('image'), createAssetsDraft);
 router.post("/:id", authMiddleware, upload.single('image'), updateAssetsDraft);
 router.get("/:id", authMiddleware, getAsset);
